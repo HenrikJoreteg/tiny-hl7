@@ -7,10 +7,14 @@
   "module": "dist/hl7.module.js",
   "unpkg": "dist/hl7.umd.js",
   "scripts": {
+    "prepublish": "npm run build && npm test",
     "test": "tape -r esm test | tap-spec",
-    "build": "microbundle",
+    "build": "rm -rf dist && microbundle",
     "dev": "microbundle watch"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "Henrik Joreteg <henrik@joreteg.com>",
   "license": "MIT",
