@@ -1,4 +1,4 @@
-const dset = require('dset')
+import dset from 'dset'
 
 export const endOfLineRe = /\r\n|\r|\n/g
 

@@ -82,6 +82,7 @@ Here we generate an "ack" acknowledging receipt of a message by combining parse 
 
 ```js
 import hl7 from 'tiny-hl7'
+import { stringify as stringifyDate } from 'hl7-date'
 
 const generateAck = incoming => {
   const messageHeader = hl7.parse(incoming)[0]
@@ -90,8 +91,11 @@ const generateAck = incoming => {
     {
       'MSH.3': messageHeader['MSH.5'],
       'MSH.5': messageHeader['MSH.3'],
-      'MSH.7': dateToHL7TimeStamp(new Date()),
-      'MSH.10': shortid(),
+      'MSH.7': stringifyDate(new Date(), 'minute'),
+      'MSH.9': 'ACK',
+      'MSH.10': 'ACK' + stringifyDate(new Date(), 'second'),
+      'MSH.11': 'P',
+      'MSH.12': messageHeader['MSH.12'],
     },
     {
       'MSA.1': 'AA',
@@ -109,6 +113,7 @@ npm test
 
 ## Changelog
 
+- `1.0.2` - fixing dset import that was causing a bug in serialize
 - `1.0.1` - initial release
 
 ## License
