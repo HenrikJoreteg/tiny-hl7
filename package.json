@@ -1,6 +1,6 @@
 {
   "name": "tiny-hl7",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "source": "src/hl7.js",
   "main": "dist/hl7.js",
