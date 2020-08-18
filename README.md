@@ -113,6 +113,7 @@ npm test
 
 ## Changelog
 
+- `1.0.3` - fixing regexp usage broken in safari
 - `1.0.2` - fixing dset import that was causing a bug in serialize
 - `1.0.1` - initial release
 

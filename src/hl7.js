@@ -9,7 +9,7 @@ const unescapePairs = [
   [/\\E\\/g, '\\'],
   // [/\\R\\/g, '~']
 ]
-const escapeCharacterPair = [/(?<![EFSTR])\\(?![EFSTR]\\)/g, '\\E\\']
+const escapeCharacterPair = [/(?:[^EFSTR])\\(?:[^EFSTR])/g, '\\E\\']
 const escapePairs = [
   [/\|/g, '\\F\\'],
   [/\^/g, '\\S\\'],
@@ -116,7 +116,7 @@ const serializeSegment = obj => {
 
   const joined = join(result).replace(
     escapeCharacterPair[0],
-    escapeCharacterPair[1]
+    match => match.slice(0, 1) + escapeCharacterPair[1] + match.slice(-1)
   )
 
   return segmentId + (isMessageHeader ? '|^~\\&' : '|') + joined
